@@ -1,8 +1,8 @@
 function deleteNote(noteId) {
-    fetch('/delete-note', {
-        method: 'POST',
+    fetch("/delete-note", {
+        method: "POST",
         body: JSON.stringify({ noteId: noteId }),
-    }).than((_res) => {
-        window.localtion.href = "/";
+    }).then((_res) => {
+        window.location.href = "/bulletinBoard";
     });
 }

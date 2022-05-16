@@ -1,10 +1,10 @@
 
-from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User
+from flask import Blueprint, render_template, request, flash, redirect, url_for, request, jsonify
+from .models import User, Note
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
-
+import json
 
 auth = Blueprint('auth', __name__)
 
@@ -31,7 +31,6 @@ def login():
 
 #로그아웃
 @auth.route('/logout')
-#@login_required #로그아웃 시 로그인 요청
 def logout():
     logout_user()
     return render_template("home.html", user=current_user)
@@ -68,6 +67,30 @@ def sign_up():
 
     return render_template("sign_up.html", user=current_user)
 
-@auth.route('/bulletinBoard')
+@auth.route('/bulletinBoard', methods=['GET', 'POST'])
+@login_required# 로그인 요청
 def bulletinBoard():
+    if request.method == 'POST':
+        note = request.form.get('note')
+        if len(note) < 1:
+            flash('너무 짧습니다.', category='error')
+        else:
+            new_note = Note(data=note, user_id=current_user.email)
+            db.session.add(new_note)
+            db.session.commit()
+            flash('성공.', category='success')
     return render_template("bulletinBoard.html", user=current_user)
+
+@auth.route('/delete-note', methods=['POST'])
+def delete_note():
+    note = json.loads(request.data)
+    noteId = note['noteId']
+    note = Note.query.get(noteId)
+    if note:
+        if note.user_id == current_user.email:
+            db.session.delete(note)
+            db.session.commit()
+            flash('삭제완료.', category='success')
+        else:
+            flash('작성자가 아닙니다.', category='error')
+    return jsonify({})
