@@ -1,6 +1,19 @@
+
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-
-<h1>홈페이지 입니다. </h1>
+<h1> 홈페이지 입니다. </h1>
+<p>
+    <img src = "https://mblogthumb-phinf.pstatic.net/20150309_95/smilennv_14258704343254M14j_JPEG/%C0%CC%B9%CC%C1%F6%C5%C2%B1%D7_01.jpg?type=w2"
+        alt = "Tutorials Pointa" 
+        border="0"
+        /> 
+</p>
+<body>
+    <form action = "http://localhost:5000/uploader" method = "POST" 
+       enctype = "multipart/form-data">
+       <input type = "file" name = "file" />
+       <input type = "submit"/>
+    </form>
+ </body>
 {% endblock %}
