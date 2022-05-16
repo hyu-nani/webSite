@@ -29,14 +29,42 @@
         </button>
         <div class="collapse navbar-collapse" id="navbar">
             <div class="navbar-nav">
+                {% if user.is_authernticated %}
                 <a class="nav-item nav-link" id="home" href="/">홈</a>
-                <a class="nav-item nav-link" id="logout" href="/logout">로그아웃</a>
                 <a class="nav-item nav-link" id="login" href="/login">로그인</a>
                 <a class="nav-item nav-link" id="signUp" href="/sign-up">회원가입</a>
                 <a class="nav-item nav-link" id="buletinBoard" href="/bulletinBoard">게시판</a>
+                {% else %}
+                <a class="nav-item nav-link" id="home" href="/">홈</a>
+                <a class="nav-item nav-link" id="logout" href="/logout">로그아웃</a>
+                <a class="nav-item nav-link" id="buletinBoard" href="/bulletinBoard">게시판</a>
+                {% endif %}
             </div>
         </div>
     </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == 'error' %}
+                <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="ture">&times;</span>
+                    </button>
+                </div>
+                {% else %}
+                <div class="alert alert-success alter-dismissable fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="ture">&times;</span>
+                    </button>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <div class="container">
         {% block content %} contents {% endblock %}
     </div>
