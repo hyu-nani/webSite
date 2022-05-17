@@ -9,7 +9,7 @@ app = create_app()
 
 if __name__ == '__main__':
     if developMode:
-        app.run(debug=True, host="0.0.0.0", port=8080)
+        app.run(debug=True, host="0.0.0.0", port=80)
     else:
         from waitress import serve
-        serve(app, host="0.0.0.0", port=8080)
+        serve(app, host="0.0.0.0", port=80)

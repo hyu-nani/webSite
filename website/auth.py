@@ -103,3 +103,12 @@ def delete_note():
         else:
             flash('작성자가 아닙니다.', category='error')
     return jsonify({})
+
+@auth.route('/information')
+def information():
+    return render_template("information.html", user=current_user)
+
+@auth.route('/estimate')
+@login_required# 로그인 요청
+def estimate():
+    return render_template("estimate.html", user=current_user)

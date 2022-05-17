@@ -2,18 +2,15 @@
 {% extends "base.html" %}
 {% block title %}홈{% endblock %}
 {% block content %}
-<h1> 홈페이지 입니다. </h1>
-<p>
-    <img src = "https://github.com/hyu-nani/webStieImage/blob/main/Cat03.jpg?raw=true"
+<h1> 테스트 홈페이지 입니다. </h1>
+<a href="https://blog.naver.com/comcut03/220612769724">작업 블로그</a><br/>
+게시판 작업중
+<body>
+    <img src = "https://github.com/hyu-nani/webStieImage/blob/main/front.gif?raw=true"
+        width="100%"
+        height="auto"
         alt = "Tutorials Pointa" 
         border="0"
         /> 
-</p>
-<body>
-    <form action = "http://localhost:5000/uploader" method = "POST" 
-       enctype = "multipart/form-data">
-       <input type = "file" name = "file" />
-       <input type = "submit"/>
-    </form>
  </body>
 {% endblock %}
