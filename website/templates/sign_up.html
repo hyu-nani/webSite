@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block title %}sign_up{% endblock %}
+{% block title %}회원가입{% endblock %}
 {% block content %}
 <form method="POST">
     <h3 align="center"><br>회원가입</h3>
     <div class="form-group">
         <label for="name">이름*</label>
         <input 
-            type="text" 
+            type="name" 
             class="form-control"
             id="name"
             name="name"
@@ -16,7 +16,7 @@
     <div class="form-group">
         <label for="email">이메일*</label>
         <input 
-            type="text" 
+            type="email" 
             class="form-control"
             id="email"
             name="email"
@@ -26,7 +26,7 @@
     <div class="form-group">
         <label for="password1">비밀번호*</label>
         <input 
-            type="text" 
+            type="password1" 
             class="form-control"
             id="password1"
             name="password1"
@@ -36,7 +36,7 @@
     <div class="form-group">
         <label for="password2">비밀번호 확인*</label>
         <input 
-            type="text" 
+            type="password2" 
             class="form-control"
             id="password2"
             name="password2"
@@ -44,16 +44,20 @@
         />
     </div>
     <div class="form-group">
-        <label for="name">주소(선택)</label>
+        <label for="address">주소(선택)</label>
         <input 
-            type="text" 
+            type="address" 
             class="form-control"
             id="address"
             name="address"
             placeholder="address"
         />
     </div>
+    <tr>
+        <td align="left"><font size="2">이벤트 등 프로모션 알림 메일 수신(선택)</font></td>
+        
+    </tr>
     <br />
-    <button type="submit" class="btn-btnprimary"><h5>확인</h5></button>
+    <button type="submit" class="btn-btnprimary"><h5>제출</h5></button>
 </from>
 {% endblock %}

@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
 from .models import User, Note
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
-from flask_login import login_user, login_required, logout_user, current_user
+from flask_login import login_user, login_required, logout_user, current_user, user_accessed
 import json
 
 auth = Blueprint('auth', __name__)
@@ -35,14 +35,23 @@ def logout():
     logout_user()
     return render_template("home.html", user=current_user)
 
+#이용약관
+@auth.route('/termOfUse', methods=['GET', 'POST'])
+def termOfUse():
+    if request.method == 'POST':
+        return redirect(url_for('auth.sign_up'))#홈페이지 이동
+    return render_template("termOfUse.html", user=current_user)
+
 #회원가입
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
+
     if request.method == 'POST':
         email = request.form.get('email')
         name = request.form.get('name')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
+        advTerms = request.form.get('check')#마케팅 계약
 
         user = User.query.filter_by(email=email).first()
         if user:
@@ -61,7 +70,7 @@ def sign_up():
             new_user = User(email=email, name=name, password=generate_password_hash(password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
-            login_user(user, remember=True)
+            login_user(new_user, remember=True)
             flash('가입을 환영합니다.', category='success')
             return redirect(url_for('views.home'))#홈페이지 이동
 
