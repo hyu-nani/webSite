@@ -1,5 +1,32 @@
 {% extends "base.html" %}
 {% block title %}견적/시안{% endblock %}
 {% block content %}
-
+<style>
+    table, th, td {
+        border:0px;
+    }
+</style>
+<form method="POST">
+        <tr>
+            <h2 align="center">[ 견적/시안 ]</h2>
+            <button type="submit" class="btn btn-primary">새글 작성</button>
+        </tr>
+        <tr>
+            <td>
+                {% for order in Order %}
+                    <tr>
+                        <td>
+                            <button class="list-group-item">
+                                {{ order.id }} :
+                                {{ order.order_name }} :
+                                {{ order.order_password }}
+                                <button type="button" class="close" onClick="deleteOrder({{ order.id }})">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </td>
+        </tr>
+</form>
 {% endblock %}

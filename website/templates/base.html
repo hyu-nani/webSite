@@ -14,10 +14,20 @@
             href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
             crossorigin="anonymous"
         />
+        <link 
+            rel="stylesheet" 
+            href="nav-menu.css"
+        />
         <title>{% block title %}Home{% endblock %}</title>
     </head>
-    <body> 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <body style="background-color:rgb(255, 255, 255)"> 
+        <nav class="navbar navbar-expand-lg navbar-light bg-fade">
+            <a class="navbar-brand" href="/"><img 
+                src="https://github.com/hyu-nani/webStieImage/blob/main/logo.gif?raw=true" 
+                width="auto" 
+                height="100%" 
+                alt="Logo"
+            ></a>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -30,10 +40,12 @@
                 <div class="navbar-nav">
                     {% if user.is_authenticated %}
                         <a class="nav-item nav-link" id="home" href="/">홈</a>
+                        <a class="nav-item nav-link" id="myPage" href="/myPage">내 정보</a>
                         <a class="nav-item nav-link" id="logout" href="/logout">로그아웃</a>
                         <a class="nav-item nav-link" id="buletinBoard" href="/bulletinBoard">게시판</a>
                         <a class="nav-item nav-link" id="information" href="/information">회사소개</a>
                         <a class="nav-item nav-link" id="estimate" href="/estimate">견적/시안요청</a>
+                        
                         {% else %}
                         <a class="nav-item nav-link" id="home" href="/">홈</a>
                         <a class="nav-item nav-link" id="login" href="/login">로그인</a>
@@ -44,6 +56,7 @@
                     {% endif %}
                 </div>
             </div>
+            
         </nav>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -67,28 +80,49 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-
-        <div class="container">
+        <div class="container" style="background-color:rgb(255, 255, 255); width: 100%;" >
             {% block content %} contents {% endblock %}
         </div>
-            <script
-                src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                crossorigin="anonymous"
-            ></script>
-            <script
-                src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                crossorigin="anonymous"
-            ></script>
-            <script
-                src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                crossorigin="anonymous"
-            ></script>
-            <script
-                type="text/javascript"
-                src="{{ url_for('static', filename='index.js') }}"
-            ></script>
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            type="text/javascript"
+            src="{{ url_for('static', filename='index.js') }}"
+        ></script>
+    </body>
+    <tr>
+        <td bgcolor="white">
+            <img height="2" width="100%" border="0">
+        </td>
+    </tr>
+    <body>
+        <div align="center" style="background-color:rgb(224, 224, 224) ;"> 
+            <h6 style="width:60%" >
+                <td>
+                    <p style="font-family:verdana">
+                        <b>상호:</b> 밀양컴퓨터컷팅<br/>
+                        <b>사업자등록:</b>615-12-07448 <br/>
+                        <b>대표:</b>배태식 / <b>사무실:</b>경남 밀양시 내이동 1577-12 <br/>
+                        <b>T.055)355-2464,2494 FAX:355-2491</b><br/>
+                        본 웹사이트에 게시된 이메일 주소가 전자우편 수집 프로그램이나 그 밖의 기술적 장치를 이용하여 <br/>
+                        무단으로 수집되는 것을 거부하며, 이를 위반 시 정보통신망법에 의해 형사 처벌됨을 유념하시기 바랍니다.<br/>
+                        <b>[게시일 2003년 8월 25일]</b><br/>
+                    </p>
+                </td>
+            </h6>
+        </div>
     </body>
 </html>

@@ -3,6 +3,7 @@
 {% block content %}
 <form method="POST">
     <h3 align="center"><br>회원가입</h3>
+    <h6 align="left">(*)필수사항</h6>
     <div class="form-group">
         <label for="name">이름*</label>
         <input 
@@ -44,20 +45,16 @@
         />
     </div>
     <div class="form-group">
-        <label for="address">주소(선택)</label>
+        <label for="phone">휴대전화</label>
         <input 
-            type="address" 
+            type="phone" 
             class="form-control"
-            id="address"
-            name="address"
-            placeholder="address"
+            id="phone"
+            name="phone"
+            placeholder="phone number (-)없이 입력해주세요"
         />
     </div>
-    <tr>
-        <td align="left"><font size="2">이벤트 등 프로모션 알림 메일 수신(선택)</font></td>
-        <td><input type="checkbox" name="check" id="check"></td><hr/>
-    </tr>
-    <br />
-    <button type="submit" class="btn-btnprimary"><h5>제출</h5></button>
-</from>
+    <br/>
+    <button type="submit" class="btn btn-primary">제출</button>
+</form>
 {% endblock %}

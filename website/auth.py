@@ -1,10 +1,11 @@
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for, request, jsonify
-from .models import User, Note
+from .models import User, Note, Order
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user, user_accessed
 import json
+
 
 auth = Blueprint('auth', __name__)
 
@@ -14,7 +15,6 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
@@ -39,19 +39,18 @@ def logout():
 @auth.route('/termOfUse', methods=['GET', 'POST'])
 def termOfUse():
     if request.method == 'POST':
-        return redirect(url_for('auth.sign_up'))#홈페이지 이동
+        return redirect(url_for('auth.sign_up'))
     return render_template("termOfUse.html", user=current_user)
 
 #회원가입
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
-
     if request.method == 'POST':
         email = request.form.get('email')
         name = request.form.get('name')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
-        advTerms = request.form.get('check')#마케팅 계약
+        phone = request.form.get('phone')
 
         user = User.query.filter_by(email=email).first()
         if user:
@@ -67,7 +66,7 @@ def sign_up():
         elif password1 != password2:
             flash('비밀번호와 비밀번호 확인이 일치하지 않습니다.', category='error')
         else:
-            new_user = User(email=email, name=name, password=generate_password_hash(password1, method='sha256'))
+            new_user = User( email = email,  name = name, password = generate_password_hash(password1, method='sha256'), phone = phone)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
@@ -76,6 +75,7 @@ def sign_up():
 
     return render_template("sign_up.html", user=current_user)
 
+#게시판
 @auth.route('/bulletinBoard', methods=['GET', 'POST'])
 @login_required# 로그인 요청
 def bulletinBoard():
@@ -84,12 +84,13 @@ def bulletinBoard():
         if len(note) < 1:
             flash('너무 짧습니다.', category='error')
         else:
-            new_note = Note(data=note, user_id=current_user.email)
+            new_note = Note(note_data=note, user_id=current_user.email)
             db.session.add(new_note)
             db.session.commit()
             flash('성공.', category='success')
     return render_template("bulletinBoard.html", user=current_user)
 
+#노트 삭제
 @auth.route('/delete-note', methods=['POST'])
 def delete_note():
     note = json.loads(request.data)
@@ -104,11 +105,60 @@ def delete_note():
             flash('작성자가 아닙니다.', category='error')
     return jsonify({})
 
+#견적 삭제
+@auth.route('/delete-order', methods=['POST'])
+def delete_order():
+    order = json.loads(request.data)
+    orderId = order['orderId']
+    order = Order.query.get(orderId)
+    if order:
+        if order.order_id == current_user.email:
+            db.session.delete(order)
+            db.session.commit()
+            flash('삭제완료.', category='success')
+        else:
+            flash('작성자가 아닙니다.', category='error')
+    return jsonify({})
+
+#회사소개
 @auth.route('/information')
 def information():
     return render_template("information.html", user=current_user)
 
-@auth.route('/estimate')
+#견적 시안 새글 작성칸
+@auth.route('/estimateSheet', methods=['GET', 'POST'])
+@login_required# 로그인 요청
+def estimateSheet():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        password = request.form.get('pwd')
+        note = request.form.get('note')
+        phone = request.form.get('phone')
+        if len(phone) == 0:
+            flash('전화 적어 주세요', category='error')
+        if len(name) == 0:
+            flash('이름을 적어 주세요', category='error')
+        elif len(password) == 0:
+            flash('비밀번호를 적어 주세요', category='error')
+        elif len(note) == 0:
+            flash('내용을 적어 주세요', category='error')
+        else:
+            flash('성공', category='success')
+            new_order = Order(order_id=current_user.email, order_name=name, order_password=password, order_data=note, order_number = phone)
+            db.session.add(new_order)
+            db.session.commit()
+            return redirect(url_for('auth.estimate'))
+    return render_template("estimateSheet.html", user=current_user)
+
+#견적 시안 창
+@auth.route('/estimate', methods=['GET', 'POST'])
 @login_required# 로그인 요청
 def estimate():
-    return render_template("estimate.html", user=current_user)
+    if request.method == 'POST':
+        return redirect(url_for('auth.estimateSheet'))
+    list = Order.query.all()
+    return render_template("estimate.html", user=current_user, Order=list)
+
+@auth.route('/myPage')
+def myPage():
+    return render_template("myPage.html", user=current_user)
