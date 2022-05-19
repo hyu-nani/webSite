@@ -1,60 +1,63 @@
 {% extends "base.html" %}
 {% block title %}회원가입{% endblock %}
 {% block content %}
-<form method="POST">
-    <h3 align="center"><br>회원가입</h3>
-    <h6 align="left">(*)필수사항</h6>
-    <div class="form-group">
-        <label for="name">이름*</label>
-        <input 
-            type="name" 
-            class="form-control"
-            id="name"
-            name="name"
-            placeholder="Name"
-        />
-    </div>
-    <div class="form-group">
-        <label for="email">이메일*</label>
-        <input 
-            type="email" 
-            class="form-control"
-            id="email"
-            name="email"
-            placeholder="Email"
-        />
-    </div>
-    <div class="form-group">
-        <label for="password1">비밀번호*</label>
-        <input 
-            type="password1" 
-            class="form-control"
-            id="password1"
-            name="password1"
-            placeholder="Password"
-        />
-    </div>
-    <div class="form-group">
-        <label for="password2">비밀번호 확인*</label>
-        <input 
-            type="password2" 
-            class="form-control"
-            id="password2"
-            name="password2"
-            placeholder="Confirm password"
-        />
-    </div>
-    <div class="form-group">
-        <label for="phone">휴대전화</label>
-        <input 
-            type="phone" 
-            class="form-control"
-            id="phone"
-            name="phone"
-            placeholder="phone number (-)없이 입력해주세요"
-        />
-    </div>
-    <br/>
-    <button type="submit" class="btn btn-primary">제출</button>
-</form>
+<div class="container" style="width:device-width;">
+    <form method="POST">
+        <br/>
+        <h3 align="center"><br>회원가입</h3>
+        <h6 align="left">(*)필수사항</h6>
+        <div class="form-group">
+            <label for="name">이름*</label>
+            <input 
+                type="name" 
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Name"
+            />
+        </div>
+        <div class="form-group">
+            <label for="email">이메일*</label>
+            <input 
+                type="email" 
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Email"
+            />
+        </div>
+        <div class="form-group">
+            <label for="password1">비밀번호*</label>
+            <input 
+                type="password1" 
+                class="form-control"
+                id="password1"
+                name="password1"
+                placeholder="Password"
+            />
+        </div>
+        <div class="form-group">
+            <label for="password2">비밀번호 확인*</label>
+            <input 
+                type="password2" 
+                class="form-control"
+                id="password2"
+                name="password2"
+                placeholder="Confirm password"
+            />
+        </div>
+        <div class="form-group">
+            <label for="phone">휴대전화</label>
+            <input 
+                type="phone" 
+                class="form-control"
+                id="phone"
+                name="phone"
+                placeholder="phone number (-)없이 입력해주세요"
+            />
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-primary">제출</button>
+    </form>
+</div>
 {% endblock %}

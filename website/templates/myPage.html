@@ -1,16 +1,15 @@
 {% extends "base.html" %}
 {% block title %}내 정보{% endblock %}
 {% block content %}
-<body>
+<div class="container">
     <a>
-        E-mail<br/>
-        <output 
-            type="text"
-            id="email"
-            class="form-control"
-            >
-        </output>
+        이메일<br/>
+        {{user.email}}<br/>
+        이름<br/>
+        {{user.name}}<br/>
+        전화번호<br/>
+        {{user.phone}}
         
     </a>
-</body>
+</div>
 {% endblock %}

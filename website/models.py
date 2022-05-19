@@ -17,6 +17,7 @@ class Note(db.Model):
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, db.ForeignKey('user.email'))
+    order_title = db.Column(db.String(150))
     order_name = db.Column(db.String(150))
     order_password = db.Column(db.String(150))
     order_number = db.Column(db.String(150))

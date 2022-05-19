@@ -6,69 +6,81 @@
         border:0px;
     }
 </style>
-<form method="POST">
-    <table style="width: 100%;">
+<div class="container" style="width:auto;">
+    <form method="POST">
+        <table style="width: 100%;">
+            <tr>
+                <h2 align="center">새글 작성</h2>
+            </tr>
+            <tr>
+                <div class="form-group">
+                    <label for="title">제목</label>
+                    <input 
+                        type="title" 
+                        class="form-control"
+                        id="title"
+                        name="title"
+                        placeholder="제목"
+                    />
+                </div>
+                <td>
+                    <div class="form-group">
+                        <label for="name">작성자</label>
+                        <input 
+                            type="name" 
+                            class="form-control"
+                            id="name"
+                            name="name"
+                            placeholder="이름"
+                        />
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <label for="pwd">비밀번호</label>
+                        <input 
+                            type="pwd" 
+                            class="form-control"
+                            id="pwd"
+                            name="pwd"
+                            placeholder="새글 비밀번호"
+                        />
+                    </div>
+                </td>
+            </tr>    
+        </table>
+        <div>
+            <td>
+                <div class="form-group">
+                    <label for="note">내용</label>
+                    <textarea 
+                        rows="10" 
+                        style="width:100%"
+                        name="note"    
+                        id="note" 
+                        class="form-control"
+                    >
+                    </textarea>
+                </div>
+            </td>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="phone">연락처</label>
+                        <input 
+                            type="phone"
+                            class="form-control"
+                            id="phone"
+                            name="phone"
+                        />
+                    </div>
+                </td>
+            </tr>
+        </div>
+
         <tr>
-            <h2 align="center">새글 작성</h2>
+            <td><button type="submit" class="btn btn-primary">제출</button></td>
         </tr>
-        <tr>
-            <td>
-                <div class="form-group">
-                    <label for="name">작성자</label>
-                    <input 
-                        type="name" 
-                        class="form-control"
-                        id="name"
-                        name="name"
-                        placeholder="이름"
-                    />
-                </div>
-            </td>
-            <td>
-                <div class="form-group">
-                    <label for="pwd">비밀번호</label>
-                    <input 
-                        type="pwd" 
-                        class="form-control"
-                        id="pwd"
-                        name="pwd"
-                        placeholder="새글 비밀번호"
-                    />
-                </div>
-            </td>
-        </tr>    
-    </table>
-    <div>
-        <td>
-            <div class="form-group">
-                <label for="note">내용</label>
-                <textarea 
-                    rows="10" 
-                    style="width:100%"
-                    name="note"    
-                    id="note" 
-                    class="form-control"
-                >
-                </textarea>
-            </div>
-        </td>
-        <tr>
-            <td>
-                <div class="form-group">
-                    <label for="phone">연락처</label>
-                    <input 
-                        type="phone"
-                        class="form-control"
-                        id="phone"
-                        name="phone"
-                    />
-                </div>
-            </td>
-        </tr>
-    </div>
-    
-    <tr>
-        <td><button type="submit" class="btn btn-primary">제출</button></td>
-    </tr>
-</form>
+    </form>
+</div>
 {% endblock %}

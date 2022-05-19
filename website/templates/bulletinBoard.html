@@ -1,22 +1,30 @@
 {% extends "base.html" %}
 {% block title %}게시판{% endblock %}
 {% block content %}
-<h1 align="center">Notes</h1>
-<ul class="list-group list-group-flush" id="notes">
-    {% for note in user.notes %}
-        <li class="list-group-item">
-            {{ note.note_data }}
-            <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </li>
-    {% endfor %}
-</ul>
-<form method="POST">
-    <textarea name="note" id="note" class="form-control"></textarea>
-    <br />
-    <div align="center">
-        <button type="submit" class="btn btn-primary">Add Note</button>
-    </div>
-</form>
+<br/>
+<h1 align="center">자유 게시판</h1>
+<div class="container" style="width:auto;">
+    <tr>
+        <td bgcolor="white">
+            <img height="2" width="100%" border="0">
+        </td>
+    </tr>
+    <ul class="list-group list-group-flush" id="notes">
+        {% for note in Notes %}
+            <li class="list-group-item">
+                {{ note.note_data }} [ {{ note.user_id }} : {{ note.note_date}} ]
+                <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </li>
+        {% endfor %}
+    </ul>
+    <form method="POST">
+        <textarea name="note" id="note" class="form-control"></textarea>
+        <br />
+        <div align="center">
+            <button type="submit" class="btn btn-primary">글 작성</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

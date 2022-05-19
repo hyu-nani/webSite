@@ -87,8 +87,9 @@ def bulletinBoard():
             new_note = Note(note_data=note, user_id=current_user.email)
             db.session.add(new_note)
             db.session.commit()
-            flash('성공.', category='success')
-    return render_template("bulletinBoard.html", user=current_user)
+            flash('완료', category='success')
+    list = Note.query.all()
+    return render_template("bulletinBoard.html", user=current_user, Notes=list)
 
 #노트 삭제
 @auth.route('/delete-note', methods=['POST'])
@@ -134,6 +135,7 @@ def estimateSheet():
         password = request.form.get('pwd')
         note = request.form.get('note')
         phone = request.form.get('phone')
+        title = request.form.get('title')
         if len(phone) == 0:
             flash('전화 적어 주세요', category='error')
         if len(name) == 0:
@@ -143,10 +145,10 @@ def estimateSheet():
         elif len(note) == 0:
             flash('내용을 적어 주세요', category='error')
         else:
-            flash('성공', category='success')
-            new_order = Order(order_id=current_user.email, order_name=name, order_password=password, order_data=note, order_number = phone)
+            new_order = Order(order_id=current_user.email, order_title=title, order_name=name, order_password=password, order_data=note, order_number = phone)
             db.session.add(new_order)
             db.session.commit()
+            flash('완료', category='success')
             return redirect(url_for('auth.estimate'))
     return render_template("estimateSheet.html", user=current_user)
 
@@ -159,6 +161,27 @@ def estimate():
     list = Order.query.all()
     return render_template("estimate.html", user=current_user, Order=list)
 
+#내정보
 @auth.route('/myPage')
 def myPage():
     return render_template("myPage.html", user=current_user)
+
+######################################################################################
+# 샘플 리스트
+######################################################################################
+
+@auth.route('/sample/banner')
+def banner():
+   return render_template("sample/banner.html", user=current_user)
+
+@auth.route('/sample/frame')
+def frame():
+   return render_template("sample/frame.html", user=current_user)
+
+@auth.route('/sample/sticker')
+def sticker():
+   return render_template("sample/sticker.html", user=current_user)
+
+@auth.route('/sample/screen')
+def screen():
+   return render_template("sample/screen.html", user=current_user)

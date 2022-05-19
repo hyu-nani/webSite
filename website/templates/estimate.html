@@ -6,27 +6,47 @@
         border:0px;
     }
 </style>
-<form method="POST">
-        <tr>
-            <h2 align="center">[ 견적/시안 ]</h2>
-            <button type="submit" class="btn btn-primary">새글 작성</button>
-        </tr>
-        <tr>
-            <td>
+<div class="container" style="width:80%;">
+    <form method="POST">
+            <tr>
+                <br/>
+                <h2 align="center">견적/시안요청 </h2>
+                <div align="right">
+                    <button type="submit" class="btn btn-primary" >새글 작성</button>
+                </div>
+            </tr>
+            <br/>
+            <tr>
+                <td bgcolor="white">
+                    <img height="2" width="100%" border="0">
+                </td>
+            </tr>
+            <tr>
+                <ul class="list-group list-group-flush" id="orders"></ul>
                 {% for order in Order %}
-                    <tr>
+                <tr>
+                    <table>
+                        <td >{{ order.id }}</td>
                         <td>
-                            <button class="list-group-item">
-                                {{ order.id }} :
-                                {{ order.order_name }} :
-                                {{ order.order_password }}
-                                <button type="button" class="close" onClick="deleteOrder({{ order.id }})">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                            <button class="list-group-item"  style="width:80%;">
+                                {{ order.order_title }} :
+                                {{ order.order_date }}
+                            </button>
                         </td>
-                    </tr>
+                        <td>
+                            <button 
+                                type="button" 
+                                class="close" 
+                                onClick="deleteOrder({{ order.id }})" 
+                                style="width: 30%;">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </td>
+                    </table>
+                </tr>
                 {% endfor %}
-            </td>
-        </tr>
-</form>
+                </ul>
+            </tr>
+    </form>
+</div>
 {% endblock %}
