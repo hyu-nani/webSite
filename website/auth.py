@@ -170,18 +170,6 @@ def myPage():
 # 샘플 리스트
 ######################################################################################
 
-@auth.route('/sample/banner')
-def banner():
-   return render_template("sample/banner.html", user=current_user)
-
-@auth.route('/sample/frame')
-def frame():
-   return render_template("sample/frame.html", user=current_user)
-
-@auth.route('/sample/sticker')
-def sticker():
-   return render_template("sample/sticker.html", user=current_user)
-
-@auth.route('/sample/screen')
-def screen():
-   return render_template("sample/screen.html", user=current_user)
+@auth.route('/sample/purpleStick')
+def purpleStick():
+   return render_template("sample/purpleStick.html", user=current_user)
