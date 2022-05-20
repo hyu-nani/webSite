@@ -21,11 +21,11 @@
         <title>{% block title %}Home{% endblock %}</title>
     </head>
     <body style="background-color:rgb(70, 70, 70);"> 
-        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/"><img 
-                src="https://github.com/hyu-nani/webStieImage/blob/main/logo.gif?raw=true" 
+                src="https://github.com/hyu-nani/webSite/blob/main/website/images/logo.png?raw=true" 
                 width="auto" 
-                height="100%" 
+                height="90px" 
                 alt="Logo"
             ></a>
             <button
@@ -39,35 +39,35 @@
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav">
                     <li>    
-                        <a class="nav-item nav-link" id="home" href="/">홈</a>
+                        <a class="nav-item nav-link" id="home" href="/">HOME</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" id="myPage" href="/myPage">내 정보</a>
+                        <a class="nav-link" id="myPage" href="/myPage">My</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="logout" href="/logout">로그아웃</a>
+                        <a class="nav-link" id="logout" href="/logout">Logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" id="login" href="/login">로그인</a>
+                        <a class="nav-link" id="login" href="/login">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="termOfUse" href="/termOfUse">회원가입</a>
+                        <a class="nav-link" id="termOfUse" href="/termOfUse">Sign-up</a>
                     </li>
                     {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link" id="buletinBoard" href="/bulletinBoard">자유게시판</a>
+                        <a class="nav-link" id="buletinBoard" href="/bulletinBoard">bulletinBoard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="estimate" href="/estimate">견적/시안요청</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="information" href="/information">업체소개</a>
+                        <a class="nav-link" id="information" href="/information">ABOUT</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            제품소개
+                            PRODUCT
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="/sample/banner">현수막</a>
@@ -81,32 +81,6 @@
                             <a class="dropdown-item" href="#">부자재</a>
                             <a class="dropdown-item" href="#">보유서체</a>
                             <a class="dropdown-item" href="#">시공사진</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            보유장비
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">CNC</a>
-                            <a class="dropdown-item" href="#">채널 제단기</a>
-                            <a class="dropdown-item" href="#">레이저 프린터</a>
-                            <a class="dropdown-item" href="#">솔벤트 프린터</a>
-                            <a class="dropdown-item" href="#">유성잉크 프린터</a>
-                            <a class="dropdown-item" href="#">안료급 프린터</a>
-                            <a class="dropdown-item" href="#">크레인</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            입금계좌안내
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Tel: 055)355-2464</a>
-                            <a class="dropdown-item" href="#">Fax: 055)355-2491</a>
-                            <a class="dropdown-item" href="#">계좌 은행 : 농협</a>
-                            <a class="dropdown-item" href="#">811046-52-039298</a>
-                            <a class="dropdown-item" href="#">예금주 : 배태식</a>
                         </div>
                     </li>
                 </ul>
@@ -168,14 +142,13 @@
         <div align="center" style="background-color:rgb(224, 224, 224) ;"> 
             <h6 style="width:60%" >
                 <td>
-                    <p style="font-family:verdana"><br/>
-                        상호: 밀양컴퓨터컷팅<br/>
-                        사업자등록번호: 615-12-07448 <br/>
-                        대표: 배태식 / 사무실: 경남 밀양시 내이동 1577-12 <br/>
-                        T.055)355-2464,2494  FAX:355-2491<br/>
-                        본 웹사이트에 게시된 이메일 주소가 전자우편 수집 프로그램이나 그 밖의 기술적 장치를 이용하여 <br/>
-                        무단으로 수집되는 것을 거부하며, 이를 위반 시 정보통신망법에 의해 형사 처벌됨을 유념하시기 바랍니다.<br/>
-                        [게시일 2003년 8월 25일]<br/><br/>
+                    <p style="font-family:verdana;"><br/>
+                        상호: 플로위너스<br/>
+                        사업자등록번호: 832-01-02038 <br/>
+                        대표: 배현한 / 주소: 부산광역시 부산진구 엄광로 196 <br/>
+                        H.P: 010-8530-7651<br/>
+                        E-mail:cube_h2@naver.com<br/>
+                        <br/>
                         Copyright ©  hyu-nani  All rights reserved.<br/><br/>
                     </p>
                 </td>
