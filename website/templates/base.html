@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
-    <head style="width:100%;">
+    <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -19,6 +20,49 @@
             href="nav-menu.css"
         />
         <title>{% block title %}Home{% endblock %}</title>
+        <style>
+            *{
+                padding:0;
+                margin:0;
+                text-align:center;
+                color:#fff;
+                font-weight:900;
+            }
+            img{
+                display: block;
+                margin:auto;
+            }
+            h3{
+                margin:20px 0px 15px 0px;
+            }
+            @media screen and (max-width:767px){/*화면 너비 0~767px까지*/
+                html{
+                    background-color: rgba(255,0,0,0.8);/*투명도 0.8*/
+                }
+                #txt{
+                    padding:0 15px;
+                }
+            }
+            @media screen and (min-width:768px) and (max-width:959px){/*화면 너비 768~959px까지*/
+                html{
+                    background-color: rgba(0,0,255,0.8);/*투명도 0.8*/
+                }
+                #txt{
+                    padding:0 20px;
+                }
+            }
+            @media screen and (min-width:960px){
+                html{
+                    background-color: rgba(0,255,0,0.8);
+                }
+                img{
+                    float:left;
+                }
+                #txt{
+                    padding:140px 50px 0px 0px;
+                }
+            }
+        </style>
     </head>
     <body style="background-color:#f8f9fa;"> 
         <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
