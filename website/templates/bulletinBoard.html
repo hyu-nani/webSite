@@ -8,23 +8,24 @@
         <td bgcolor="white">
             <img height="2" width="100%" border="0">
         </td>
+            <ul class="list-group list-group-flush" id="notes">
+                {% for note in Notes %}
+                    <li class="list-group-item">
+                        {{ note.note_data }} [ {{ note.user_id }} : {{ note.note_date}} ]
+                        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </li>
+                {% endfor %}
+            </ul>
+        <form method="POST">
+            <textarea name="note" id="note" class="form-control"></textarea>
+            <br />
+            <div align="center">
+                <button type="submit" class="btn btn-primary">글 작성</button>
+            </div>
+        </form>
+    
     </tr>
-    <ul class="list-group list-group-flush" id="notes">
-        {% for note in Notes %}
-            <li class="list-group-item">
-                {{ note.note_data }} [ {{ note.user_id }} : {{ note.note_date}} ]
-                <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </li>
-        {% endfor %}
-    </ul>
-    <form method="POST">
-        <textarea name="note" id="note" class="form-control"></textarea>
-        <br />
-        <div align="center">
-            <button type="submit" class="btn btn-primary">글 작성</button>
-        </div>
-    </form>
 </div>
 {% endblock %}

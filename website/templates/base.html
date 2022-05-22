@@ -21,14 +21,11 @@
         />
         <title>{% block title %}Home{% endblock %}</title>
         <style>
-            
             body{
                 padding:0;
                 margin:0;
                 text-align:center;
                 color:#000;
-                font-size:80%;
-                font-weight:1000;
             }
             img{
                 display: block;
@@ -37,49 +34,58 @@
             h3{
                 margin:20px 0px 15px 0px;
             }
-            @media screen and (max-width:799px){/*화면 너비 px까지 (스마트폰용)*/
+            @media screen and (max-width:426px){/*화면 너비 px까지 (스마트폰용)*/
                 nav{
                     padding:0;
                     margin:0;
                     text-align:center;
                     color:#fff;
                     font-size:20px;
-                    font-weight:600;
+                    font-weight:300;
+                    float:center;
                 }
-                
                 html{
                     background-color: rgba(255,0,0,0.8);/*투명도 0.8*/
                 }
                 img{
-                    float:center;
-                }
-                #txt{
-                    padding:0px 0px 0px 0px;
+                    float:left;
                 }
             }
-            @media screen and (min-width:800px){ /*데스크탑 모니터용*/
+            @media screen and (min-width:427px) and (max-width:768px){/*화면 너비 px까지 테블릿)*/
                 nav{
                     padding:0;
                     margin:0;
                     text-align:center;
                     color:#fff;
-                    font-size:40px;
+                    font-size:25px;
+                    font-weight:300;
+                    float:center;
+                }
+                html{
+                    background-color: rgba(255,0,0,0.8);/*투명도 0.8*/
+                }
+                img{
+                    float:left;
+                }
+            }
+            @media screen and (min-width:769px){ /*데스크탑 모니터용*/
+                nav{
+                    padding:0;
+                    margin:0;
+                    text-align:center;
+                    color:#fff;
+                    font-size:30px;
                     font-weight:100;
+                    float:center;
                 }
                 html{
                     background-color: rgba(0,255,0,0.8);
-                }
-                img{
-                    float:center;
-                }
-                #txt{
-                    padding:140px 50px 0px 50px;
                 }
             }
         </style>
     </head>
     <body id="nav" style="background-color:#f8f9fa;"> 
-        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/"><img
                 src="https://github.com/hyu-nani/webSite/blob/main/website/images/logo.png?raw=true" 
                 width="auto" 
@@ -97,32 +103,32 @@
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav">
                     <li>    
-                        <a class="nav-item nav-link" id="home" href="/">HOME</a>
+                        <a class="nav-item nav-link" id="home" href="/">HOME |</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" id="myPage" href="/myPage">Mypage</a>
+                        <a class="nav-link" id="myPage" href="/myPage">Mypage |</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="logout" href="/logout">Logout</a>
+                        <a class="nav-link" id="logout" href="/logout">Logout |</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" id="login" href="/login">Login</a>
+                        <a class="nav-link" id="login" href="/login">Login |</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="termOfUse" href="/termOfUse">Sign-up</a>
+                        <a class="nav-link" id="termOfUse" href="/termOfUse">Sign-up |</a>
                     </li>
                     {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link" id="buletinBoard" href="/bulletinBoard">bulletinBoard</a>
+                        <a class="nav-link" id="buletinBoard" href="/bulletinBoard">bulletinBoard |</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="information" href="/information">ABOUT</a>
+                        <a class="nav-link" id="information" href="/information">ABOUT |</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             PRODUCT 
+                            PRODUCT
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
                             <a class="dropdown-item" href="/sample/purpleStick">Purple Stick</a>
@@ -153,8 +159,31 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
+        <div style=" margin-bottom: 5%;">
         {% block content %} contents {% endblock %}
-        <br/><br/><br/><br/>
+        </div>
+        <div style="width:5%;margin-right:5%; float:right;" id="tag">
+            <tr>
+                <td>
+                    인스타그램
+                    <a href="https://www.instagram.com/flowinus_korea/"><img 
+                        src="https://github.com/hyu-nani/webSite/blob/main/website/images/icon/instagram.png?raw=true"
+                        width="100%"
+                        height="100%"
+                        alt="blog_icon"/>
+                    </a>
+                </td>
+                <td>
+                    개발자 블로그
+                    <a href="https://blog.naver.com/cube_h2"><img 
+                        src="https://github.com/hyu-nani/webSite/blob/main/website/images/icon/naverBlog.png?raw=true"
+                        width="100%"
+                        height="100%"
+                        alt="blog_icon"/>
+                    </a>
+                </td>
+            </tr>
+        </div>
         <script
             src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -175,16 +204,11 @@
             src="{{ url_for('static', filename='index.js') }}"
         ></script>
     </body>
-    <body>
-        <div align="left" style="background-color:rgb(222, 139, 255) ;">
-            <div class="container">
-                
-            </div>
-        </div>
-        <div align="center" style="background-color:rgb(222, 139, 255) ;"> 
+    <footer>
+        <div align="center" style="background-color:rgb(232, 174, 255) ;"> 
             <h6 style="width:60%" >
                 <td>
-                    <p style="font-size:15px;"><br/>
+                    <p><br/>
                         상호: 플로위너스<br/>
                         사업자등록번호: 832-01-02038 <br/>
                         대표: 배현한 / 주소: 부산광역시 부산진구 엄광로 196 <br/>
@@ -196,5 +220,5 @@
                 </td>
             </h6>
         </div>
-    </body>
+    </footer>
 </html>
