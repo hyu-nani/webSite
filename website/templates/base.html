@@ -45,7 +45,7 @@
                     float:center;
                 }
                 html{
-                    background-color: rgba(255,0,0,0.8);/*투명도 0.8*/
+                    background-color: f8f9fa;/*투명도 0.8*/
                 }
                 img{
                     float:left;
@@ -62,7 +62,7 @@
                     float:center;
                 }
                 html{
-                    background-color: rgba(255,0,0,0.8);/*투명도 0.8*/
+                    background-color: f8f9fa;/*투명도 0.8*/
                 }
                 img{
                     float:left;
@@ -79,7 +79,7 @@
                     float:center;
                 }
                 html{
-                    background-color: rgba(0,255,0,0.8);
+                    background-color:#f8f9fa;
                 }
             }
         </style>
@@ -137,7 +137,6 @@
                 </ul>
             </div>
         </nav>
-        
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -159,31 +158,37 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-        <div style="">
-        {% block content %} contents {% endblock %}
+        <div style="
+        float: left;
+        width: 80%;
+        margin-left: 10%;
+        margin-bottom: 5%;
+        ">
+            {% block content %} contents {% endblock %}
         </div>
-        <div style="width:5%;margin-right:5%; float:right;" id="tag">
-            <tr>
-                <td>
-                    인스타그램
-                    <a href="https://www.instagram.com/flowinus_korea/"><img 
-                        src="https://github.com/hyu-nani/webSite/blob/main/website/images/icon/instagram.png?raw=true"
-                        width="100%"
-                        height="100%"
-                        alt="blog_icon"/>
-                    </a>
-                </td>
-                <td>
-                    개발자 블로그
-                    <a href="https://blog.naver.com/cube_h2"><img 
-                        src="https://github.com/hyu-nani/webSite/blob/main/website/images/icon/naverBlog.png?raw=true"
-                        width="100%"
-                        height="100%"
-                        alt="blog_icon"/>
-                    </a>
-                </td>
-            </tr>
+        <div style="
+        width:5%;
+        margin-right:5%;
+        float:right;
+        background-color:#f8f9fa;" id="nav">
+            <td>
+                <a href="https://www.instagram.com/flowinus_korea/"><img 
+                    src="https://github.com/hyu-nani/webSite/blob/main/website/images/icon/instagram.png?raw=true"
+                    width="100%"
+                    height="auto"
+                    alt="blog_icon"/>
+                </a>
+            </td>
+            <td>
+                <a href="https://blog.naver.com/cube_h2"><img 
+                    src="https://github.com/hyu-nani/webSite/blob/main/website/images/icon/naverBlog.png?raw=true"
+                    width="100%"
+                    height="auto"
+                    alt="blog_icon"/>
+                </a>
+            </td>
         </div>
+        <br/> 
         <script
             src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -203,10 +208,11 @@
             type="text/javascript"
             src="{{ url_for('static', filename='index.js') }}"
         ></script>
-    </body>
-    <footer>
-        <div align="center" style="background-color:rgb(232, 174, 255) ;"> 
-            <h6 style="width:60%" >
+        <div align="center" style="
+        background-color:rgb(70, 128, 255) ;
+        float: left;
+        width: 100%;">
+            <h6>
                 <td>
                     <p><br/>
                         상호: 플로위너스<br/>
@@ -220,5 +226,5 @@
                 </td>
             </h6>
         </div>
-    </footer>
+    </body>
 </html>
