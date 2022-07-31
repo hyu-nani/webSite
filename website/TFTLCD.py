@@ -6,7 +6,7 @@ import os
 '''
 하드웨어 핀 연결도 GPIO핀
 '''
-dataPin = [13,6,5,11,9,10,22,27] # D0~D7
+dataPin = [13, 6, 5, 11, 9, 10, 22, 27] # D0~D7
 RS = 21 #D/C
 CS = 16
 RD = 20
@@ -34,7 +34,8 @@ def LCDdata(bit):
             GPIO.output(dataPin[i],GPIO.LOW)
             print("0",end='')
     print('')
-    time.sleep(0.1)
+    time.sleep(0.01)
+
 def writeCammand(bit):
     GPIO.output(RS,GPIO.LOW)
     GPIO.output(RD,GPIO.HIGH)
@@ -82,6 +83,11 @@ def LCD_init():
     writeCammand(0xB1)# frame rate
     writeData(0x00)
     writeData(0x1B)# 70(default)
+
+    writeCammand(0xF6)# interface control
+    writeData(0x00)
+    writeData(0x01)
+    writeData(0x07)
 
     writeCammand(0x26)# Gamma Set
     writeData(0x01)
