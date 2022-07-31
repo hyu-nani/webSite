@@ -34,7 +34,6 @@ def LCDdata(bit):
             GPIO.output(dataPin[i],GPIO.LOW)
             print(str(i)+":0/",end='')
     print('')
-    time.sleep(0.1)
 def writeCammand(bit):
     GPIO.output(RS,GPIO.LOW)
     GPIO.output(RD,GPIO.HIGH)
