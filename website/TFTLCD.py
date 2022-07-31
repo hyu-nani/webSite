@@ -14,44 +14,6 @@ WR = 26
 RES = 19
 BLK = 12
 
-#command list
-SoftwareReset = 0x01
-ReadDisplayIdentificationInformatioin = 0x04
-ReadDisplayStatus = 0x09
-ReadDisplayPowerMode = 0x0A
-ReadDisplay_MADCTL = 0x0B
-ReadDisplayPixelFormat = 0x0C
-ReadDisplayImageFormat = 0x0D
-ReadDisplaySignalmode = 0x0E
-ReadDisplaySelfDiagnosticResult = 0x0F
-EnterSleepMode = 0x10
-Sleep_OUT = 0x11
-PartialMode_ON = 0x12
-NormalDisplayMode = 0x13
-DisplayInversion_OFF = 0x20
-DisplayInversion_ON = 0x21
-GammaSet = 0x26
-Display_OFF = 0x28
-Display_ON = 0x29
-ColumnAddressSet = 0x2A
-PageAddressSet = 0x2B
-MemoryWrite = 0x2C
-ColorSet = 0x2D
-MemoryRead = 0x2E
-PartialArea = 0x30
-VerticalScrollingDefinition = 0x33
-TearingEffectLine_OFF = 0x34
-TearingEffectLine_ON = 0x35
-MemoryAccessControl = 0x36
-VerticalScrollingStartAddress = 0x37
-IdleMode_OFF = 0x38
-IdleMode_ON = 0x39
-PixelFormatSet = 0x3A
-WriteMemoryContinue = 0x3C
-ReadMemoryContinue = 0x3E
-SetTearScanline = 0x44
-GetScanline = 0x45
-WriteDisplayBrightness = 0x51
 
 def TFTgpio_set():
     GPIO.setmode(GPIO.BCM)
@@ -72,7 +34,7 @@ def LCDdata(bit):
         else:
             GPIO.output(dataPin[i],GPIO.LOW)
 
-def commandSet(bit):
+def writeCammand(bit):
     GPIO.output(RS,GPIO.LOW)
     GPIO.output(RD,GPIO.HIGH)
     GPIO.output(WR,GPIO.LOW)
@@ -80,17 +42,102 @@ def commandSet(bit):
     GPIO.output(WR,GPIO.HIGH)
     GPIO.output(RS,GPIO.HIGH)
 
-def LCD_init():
-    GPIO.output(CS,GPIO.LOW)#active
-    commandSet(SoftwareReset)
-    for i in range(255):
-        commandSet(Display_OFF)
-        time.sleep(1)
-        commandSet(Display_ON)
-        time.sleep(1)
+def writeData(bit):
+    GPIO.output(RS,GPIO.HIGH)
+    GPIO.output(RD,GPIO.HIGH)
+    GPIO.output(WR,GPIO.LOW)
+    LCDdata(bit)
+    GPIO.output(WR,GPIO.HIGH)
 
+def LCD_init():
+    GPIO.output(CS,GPIO.LOW)# active
+    # start inittial code
+    writeCammand(0x01)# reset
+    writeCammand(0x28)# display OFF
+    
+    writeCammand(0xC0)# power control 1
+    writeData(0x26)
+    writeCammand(0xC1)# power control 2
+    writeData(0x11)
+    writeCammand(0xC5)# vcom control 1
+    writeData(0x5C)
+    writeData(0x4C)
+    writeCammand(0xC7)# vcom control 2
+    writeData(0x94)
+
+    writeCammand(0x36)# memory access control
+    writeData(0x48)
+    writeCammand(0x3A)# pixel format rate
+    writeData(0x66) #[ DPI:110  / DBI:110 ] 262K color: 18-bit/pixel (RGB 6-6-6 bits input)
+
+    writeCammand(0xB1)# frame rate
+    writeData(0x00)
+    writeData(0x1B)# 70(default)
+
+    writeCammand(0x26)# Gamma Set
+    writeData(0x01)
+
+    writeCammand(0xE0)# Positive Gamma Correction
+    writeData(0x1F)
+    writeData(0x1A)
+    writeData(0x18)
+    writeData(0x0A)
+    writeData(0x0F)
+    writeData(0x06)
+    writeData(0x45)
+    writeData(0x87)
+    writeData(0x32)
+    writeData(0x0A)
+    writeData(0x07)
+    writeData(0x02)
+    writeData(0x07)
+    writeData(0x05)
+    writeData(0x00)
+    writeCammand(0xE1)# Negative Gamma Correction
+    writeData(0x00)
+    writeData(0x25)
+    writeData(0x27)
+    writeData(0x05)
+    writeData(0x10)
+    writeData(0x09)
+    writeData(0x3A)
+    writeData(0x78)
+    writeData(0x4D)
+    writeData(0x05)
+    writeData(0x18)
+    writeData(0x0D)
+    writeData(0x38)
+    writeData(0x3A)
+    writeData(0x1F)
+
+    writeCammand(0x2A)# column address set
+    writeData(0x00)
+    writeData(0x00)
+    writeData(0x00)
+    writeData(0xEF)
+    writeCammand(0x2B)# page address set
+    writeData(0x00)
+    writeData(0x00)
+    writeData(0x01)
+    writeData(0x3F)
+    writeCammand(0xB6)# Display Function Control
+    writeData(0x0A)
+    writeData(0x82)
+    writeData(0x27)
+    writeData(0x00)
+    writeCammand(0x11)# sleep out
+    time.sleep(0.01)
+    writeCammand(0x29)# display ON
+    time.sleep(0.01)
+    writeCammand(0x2C)# memory write
+    time.sleep(0.01)
 
 
 
 TFTgpio_set()
 LCD_init()
+for i in range(255):
+        writeCammand(0x28)
+        time.sleep(1)
+        writeCammand(0x29)
+        time.sleep(1)
