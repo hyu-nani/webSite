@@ -48,6 +48,7 @@ def writeData(bit):
     GPIO.output(WR,GPIO.HIGH)
 
 def LCD_init():
+    GPIO.output(BLK,0)
     GPIO.output(CS,GPIO.LOW)# active
     # start inittial code
     GPIO.output(RES,GPIO.HIGH)
@@ -138,7 +139,7 @@ def LCD_init():
     time.sleep(0.01)
 
     GPIO.output(CS,GPIO.HIGH)# inactive
-
+    GPIO.output(BLK,1)
 def LCD_AddressSet(x1,y1,x2,y2):
     writeCammand(0x2A)
     writeData(x1)
