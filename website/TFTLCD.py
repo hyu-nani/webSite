@@ -17,5 +17,10 @@ BLK = 12
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 for i in range(8):
-    GPIO.setup(dataPin[i], GPIO.OUT, initial=GPIO.HIGH)
-
+    GPIO.setup(dataPin[i], GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(RS, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(CS, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(RD, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(WR, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(RES, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(BLK, GPIO.OUT, initial=GPIO.LOW)
