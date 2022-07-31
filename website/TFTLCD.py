@@ -128,21 +128,20 @@ def LCD_AddressSet(x1,y1,x2,y2):
     writeData(y1)
     writeData(y2)
 
-while(1):
-    LCD_init()
+LCD_init()
 
-    GPIO.output(CS,GPIO.LOW)# active
+GPIO.output(CS,GPIO.LOW)# active
 
-    LCD_AddressSet(0,0,100,100)
-    writeCammand(0x2C)
-    for i in range(100):
-        for j in range(100):
-            writeData(0x2A)
-    for i in range(5):
-        writeCammand(0x28)
-        time.sleep(1)
-        writeCammand(0x29)
-        time.sleep(1)
+LCD_AddressSet(0,0,100,100)
+writeCammand(0x2C)
+for i in range(100):
+    for j in range(100):
+        writeData(0x2A)
+for i in range(5):
+    writeCammand(0x28)
     time.sleep(1)
+    writeCammand(0x29)
+    time.sleep(1)
+time.sleep(1)
 
 GPIO.output(CS,GPIO.HIGH)# inactive
