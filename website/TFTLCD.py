@@ -84,12 +84,10 @@ def LCD_init():
     GPIO.output(CS,GPIO.LOW)#active
     commandSet(SoftwareReset)
     for i in range(255):
-        commandSet(WriteDisplayBrightness)
-        GPIO.output(RD,GPIO.HIGH)
-        GPIO.output(WR,GPIO.LOW)
-        LCDdata(0x44)
-        GPIO.output(WR,GPIO.HIGH)
-        time.sleep(0.1)
+        commandSet(DisplayInversion_ON)
+        time.sleep(1)
+        commandSet(DisplayInversion_OFF)
+        time.sleep(1)
 
 
 
