@@ -168,6 +168,11 @@ while(1):
         for j in range(100):
             writeData(0x22)
             writeData(0x12)
-    time.sleep(3)
+    for i in range(5):
+        writeCammand(0x28)
+        time.sleep(1)
+        writeCammand(0x29)
+        time.sleep(1)
+    time.sleep(1)
 
 GPIO.output(CS,GPIO.HIGH)# inactive
