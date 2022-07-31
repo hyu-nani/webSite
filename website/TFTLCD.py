@@ -17,7 +17,7 @@ BLK = 2
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 for i in range(8):
-    GPIO.setup(dataPin[i], GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(dataPin[i], GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(RS, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(CS, GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(RD, GPIO.OUT, initial=GPIO.HIGH)
@@ -114,7 +114,6 @@ def LCD_init():
     writeData(0x00) #start 0x00
     writeData(0x01)
     writeData(0x3F) #end 0x013F
-    
     writeCammand(0x29) #display ON
 
     GPIO.output(CS,GPIO.HIGH)# inactive
