@@ -11,7 +11,7 @@ RS = 21 #D/C
 CS = 16
 RD = 20
 WR = 26
-RES = 19
+RES = 19 #reset
 BLK = 12
 
 GPIO.setmode(GPIO.BCM)
@@ -28,9 +28,9 @@ GPIO.setup(BLK, GPIO.OUT, initial=GPIO.HIGH)
 def LCDdata(bit):
     for i in range(8):
         if ((bit >> i) & 0x01) == 1:
-            GPIO.output(dataPin[i], 1)
+            GPIO.output(dataPin[i],GPIO.HIGH)
         else:
-            GPIO.output(dataPin[i], 0)
+            GPIO.output(dataPin[i],GPIO.LOW)
 
 def writeCammand(bit):
     GPIO.output(RS,GPIO.LOW)
@@ -38,6 +38,7 @@ def writeCammand(bit):
     GPIO.output(WR,GPIO.LOW)
     LCDdata(bit)
     GPIO.output(WR,GPIO.HIGH)
+    GPIO.output(RS,GPIO.HIGH)
 
 def writeData(bit):
     GPIO.output(RS,GPIO.HIGH)
