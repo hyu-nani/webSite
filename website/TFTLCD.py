@@ -155,6 +155,12 @@ LCD_init()
 
 GPIO.output(CS,GPIO.LOW)# active
 
+LCD_AddressSet(0,0,100,100)
+writeCammand(0x2C)
+for i in range(100):
+    for j in range(100):
+        writeData(0x22)
+        writeData(0x12)
 for i in range(10):
     writeCammand(0x28)
     time.sleep(1)
