@@ -15,6 +15,7 @@ RES = 19
 BLK = 12
 
 GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
 for i in range(8):
     GPIO.setup(dataPin[i], GPIO.OUT)
 
