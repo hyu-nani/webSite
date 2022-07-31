@@ -55,6 +55,8 @@ def LCD_init():
     writeCammand(0x01)# reset
     time.sleep(0.005)
     writeCammand(0x28)# display OFF
+    writeCammand(0x11)# sleep out
+    writeData(0x00)
     
     writeCammand(0xC0)# power control 1
     writeData(0x26)
