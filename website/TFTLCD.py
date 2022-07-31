@@ -27,13 +27,13 @@ GPIO.setup(BLK, GPIO.OUT, initial=GPIO.HIGH)
 
 def LCDdata(bit):
     for i in range(8):
-        if (bit & (1 << i)) == 1:
+        if ((bit >> i) & 0x01) == 1:
             GPIO.output(dataPin[i],GPIO.HIGH)
             print("1",end='')
         else:
             GPIO.output(dataPin[i],GPIO.LOW)
             print("0",end='')
-    print(bit)
+    print((hex)bit)
     time.sleep(0.5)
 
 def writeCammand(bit):
