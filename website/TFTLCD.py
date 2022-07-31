@@ -14,7 +14,7 @@ WR = 26
 RES = 19
 BLK = 12
 
-GPIO.setMode(GPIO.BOARD)
+GPIO.setmode(GPIO.BOARD)
 for i in range(8):
     GPIO.setup(dataPin[i], GPIO.OUT)
 
