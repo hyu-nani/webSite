@@ -14,18 +14,16 @@ WR = 26
 RES = 19
 BLK = 12
 
-
-def TFTgpio_set():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setwarnings(False)
-    for i in range(8):
-        GPIO.setup(dataPin[i], GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(RS, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(CS, GPIO.OUT, initial=GPIO.HIGH)
-    GPIO.setup(RD, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(WR, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(RES, GPIO.OUT, initial=GPIO.HIGH)
-    GPIO.setup(BLK, GPIO.OUT, initial=GPIO.HIGH)
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+for i in range(8):
+    GPIO.setup(dataPin[i], GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(RS, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(CS, GPIO.OUT, initial=GPIO.HIGH)
+GPIO.setup(RD, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(WR, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(RES, GPIO.OUT, initial=GPIO.HIGH)
+GPIO.setup(BLK, GPIO.OUT, initial=GPIO.HIGH)
 
 def LCDdata(bit):
     for i in range(8):
@@ -132,12 +130,17 @@ def LCD_init():
     writeCammand(0x2C)# memory write
     time.sleep(0.01)
 
+    GPIO.output(CS,GPIO.HIGH)# inactive
 
 
-TFTgpio_set()
+
 LCD_init()
+
+GPIO.output(CS,GPIO.LOW)# active
 for i in range(255):
-        writeCammand(0x28)
-        time.sleep(1)
-        writeCammand(0x29)
-        time.sleep(1)
+    writeCammand(0x28)
+    time.sleep(1)
+    writeCammand(0x29)
+    time.sleep(1)
+
+GPIO.output(CS,GPIO.HIGH)# inactive
