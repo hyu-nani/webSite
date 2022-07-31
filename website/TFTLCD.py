@@ -31,7 +31,7 @@ def LCDdata(bit):
             GPIO.output(dataPin[i],GPIO.HIGH)
         else:
             GPIO.output(dataPin[i],GPIO.LOW)
-            
+
 def writeCammand(bit):
     GPIO.output(RS,GPIO.LOW)
     GPIO.output(RD,GPIO.HIGH)
@@ -168,10 +168,5 @@ for i in range(100):
     for j in range(100):
         writeData(0x22)
         writeData(0x12)
-for i in range(10):
-    writeCammand(0x28)
-    time.sleep(1)
-    writeCammand(0x29)
-    time.sleep(1)
 
 GPIO.output(CS,GPIO.HIGH)# inactive
