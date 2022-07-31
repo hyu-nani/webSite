@@ -38,7 +38,6 @@ def writeCammand(bit):
     GPIO.output(WR,GPIO.LOW)
     LCDdata(bit)
     GPIO.output(WR,GPIO.HIGH)
-    GPIO.output(RS,GPIO.HIGH)
 
 def writeData(bit):
     GPIO.output(RS,GPIO.HIGH)
