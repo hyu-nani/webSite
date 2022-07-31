@@ -29,12 +29,8 @@ def LCDdata(bit):
     for i in range(8):
         if ((bit >> i) & 0x01) == 1:
             GPIO.output(dataPin[i],GPIO.HIGH)
-            print("1",end='')
         else:
             GPIO.output(dataPin[i],GPIO.LOW)
-            print("0",end='')
-    print(" "+str(bit))
-    time.sleep(0.1)
 
 def writeCammand(bit):
     GPIO.output(RS,GPIO.LOW)
