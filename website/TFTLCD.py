@@ -27,7 +27,7 @@ GPIO.setup(BLK, GPIO.OUT, initial=GPIO.HIGH)
 
 def LCDdata(bit):
     for i in range(8):
-        if bit & (1 << i) == 1:
+        if (bit & (1 << i)) == 1:
             GPIO.output(dataPin[i],GPIO.HIGH)
         else:
             GPIO.output(dataPin[i],GPIO.LOW)
@@ -50,7 +50,14 @@ def writeData(bit):
 def LCD_init():
     GPIO.output(CS,GPIO.LOW)# active
     # start inittial code
+    GPIO.output(RES,GPIO.HIGH)
+    time.sleep(0.001)
+    GPIO.output(RES,GPIO.LOW)
+    time.sleep(0.01)
+    GPIO.output(RES,GPIO.HIGH)
+    time.sleep(0.12)
     writeCammand(0x01)# reset
+    time.sleep(0.005)
     writeCammand(0x28)# display OFF
     
     writeCammand(0xC0)# power control 1
