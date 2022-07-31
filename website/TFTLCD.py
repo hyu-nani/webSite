@@ -51,12 +51,12 @@ def LCD_init():
     GPIO.output(RES,GPIO.HIGH)
     time.sleep(0.12)
     GPIO.output(CS,GPIO.LOW)# active
-
-    writeCammand(0x28)# display OFF
-    writeCammand(0x11)# sleep out
+    
+    writeCammand(0x28) #display OFF
+    writeCammand(0x11)#sleep out
     writeData(0x00)
-    writeCammand(0xCB) #Power Control A
-	writeData(0x39) #always 0x39
+    writeCammand(0xCB)#Power Control A
+	writeData(0x39)#always 0x39
 	writeData(0x2C) #always 0x2C
 	writeData(0x00) #always 0x
 	writeData(0x34) #Vcore = 1.6V
@@ -118,6 +118,7 @@ def LCD_init():
 
     GPIO.output(CS,GPIO.HIGH)# inactive
     GPIO.output(BLK,1)
+
 def LCD_AddressSet(x1,y1,x2,y2):
     writeCammand(0x2A)
     writeData(x1)
