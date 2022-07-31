@@ -15,6 +15,6 @@ RES = 19
 BLK = 12
 
 GPIO.setMode(GPIO.BOARD)
-for i range(8):
+for i in range(8):
     GPIO.setup(dataPin[i], GPIO.OUT)
-    
+
