@@ -48,7 +48,7 @@ def LCD_init():
     GPIO.output(RES,GPIO.HIGH)
     time.sleep(0.001)
     GPIO.output(RES,GPIO.LOW)
-    time.sleep(0.01)
+    time.sleep(0.1)
     GPIO.output(RES,GPIO.HIGH)
     time.sleep(0.12)
     
@@ -57,7 +57,7 @@ def LCD_init():
     writeCammand(0x11)#sleep out
     writeData(0x00)
     writeCammand(0xCB)#Power Control A
-    writeData(0x39)#always 0x39     
+    writeData(0x39) #always 0x39     
     writeData(0x2C) #always 0x2C    
     writeData(0x00) #always 0x  
     writeData(0x34) #Vcore = 1.6V
