@@ -17,7 +17,7 @@ BLK = 2
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 for i in range(8):
-    GPIO.setup(dataPin[i], GPIO.OUT, initial=GPIO.HIGH)
+    GPIO.setup(dataPin[i], GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(RS, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(CS, GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(RD, GPIO.OUT, initial=GPIO.HIGH)
@@ -34,12 +34,14 @@ def writeCammand(bit):
     GPIO.output(WR,GPIO.LOW)
     LCDdata(bit)
     GPIO.output(WR,GPIO.HIGH)
+    time.sleep(0.1)
 
 def writeData(bit):
     GPIO.output(RS,GPIO.HIGH)
     GPIO.output(WR,GPIO.LOW)
     LCDdata(bit)
     GPIO.output(WR,GPIO.HIGH)
+    time.sleep(0.1)
 
 def LCD_init():
     GPIO.output(BLK,0)
