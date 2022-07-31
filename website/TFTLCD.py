@@ -31,14 +31,14 @@ def LCDdata(bit):
 
 def writeCammand(bit):
     GPIO.output(RS,GPIO.LOW)
-    LCDdata(bit)
     GPIO.output(WR,GPIO.LOW)
+    LCDdata(bit)
     GPIO.output(WR,GPIO.HIGH)
 
 def writeData(bit):
     GPIO.output(RS,GPIO.HIGH)
-    LCDdata(bit)
     GPIO.output(WR,GPIO.LOW)
+    LCDdata(bit)
     GPIO.output(WR,GPIO.HIGH)
 
 def LCD_init():
