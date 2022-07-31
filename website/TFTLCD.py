@@ -37,7 +37,6 @@ def writeCammand(bit):
     GPIO.output(RD,GPIO.HIGH)
     GPIO.output(WR,GPIO.LOW)
     LCDdata(bit)
-    time.sleep(0.001)
     GPIO.output(WR,GPIO.HIGH)
     GPIO.output(RS,GPIO.HIGH)
 
@@ -46,7 +45,6 @@ def writeData(bit):
     GPIO.output(RD,GPIO.HIGH)
     GPIO.output(WR,GPIO.LOW)
     LCDdata(bit)
-    time.sleep(0.001)
     GPIO.output(WR,GPIO.HIGH)
 
 def LCD_init():
@@ -141,17 +139,22 @@ def LCD_init():
 
     GPIO.output(CS,GPIO.HIGH)# inactive
 
-
+def LCD_AddressSet(x1,y1,x2,y2)
+    writeCammand(0x2A)
+    writeData(x1)
+    writeData(x2)
+    writeCommand(0x2B)
+    writeData(y1)
+    writeData(y2)
 
 LCD_init()
 
 GPIO.output(CS,GPIO.LOW)# active
-for i in range(255):
-    writeCammand(0x28)
-    time.sleep(1)
-    print("off")
-    writeCammand(0x29)
-    time.sleep(1)
-    print("on")
+
+LCD_AddressSet(0,0,100,100)
+writeCammand(0x2C)
+for i in range(100):
+    for j in range(100):
+        writeData(0x22)
 
 GPIO.output(CS,GPIO.HIGH)# inactive
