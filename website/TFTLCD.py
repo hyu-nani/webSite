@@ -87,7 +87,7 @@ def LCD_init():
         commandSet(WriteDisplayBrightness)
         GPIO.output(RD,GPIO.HIGH)
         GPIO.output(WR,GPIO.LOW)
-        LCDdata(i)
+        LCDdata(0x44)
         GPIO.output(WR,GPIO.HIGH)
         time.sleep(0.1)
 
