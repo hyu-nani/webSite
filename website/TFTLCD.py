@@ -6,13 +6,13 @@ import os
 '''
 하드웨어 핀 연결도 GPIO핀
 '''
-dataPin = [13, 6, 5, 11, 9, 10, 22, 27] # D0~D7
-RS = 21 #D/C
-CS = 16
-RD = 20
-WR = 26
-RES = 19 #reset
-BLK = 12
+dataPin = [19, 13, 6, 5, 1, 7, 8, 25] # D0~D7
+RS = 20 #D/C
+CS = 21
+RD = 26
+WR = 16
+RES = 12 #reset
+BLK = 2
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
