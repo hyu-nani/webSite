@@ -139,7 +139,7 @@ def LCD_init():
 
     GPIO.output(CS,GPIO.HIGH)# inactive
 
-def LCD_AddressSet(x1,y1,x2,y2)
+def LCD_AddressSet(x1,y1,x2,y2):
     writeCammand(0x2A)
     writeData(x1)
     writeData(x2)
