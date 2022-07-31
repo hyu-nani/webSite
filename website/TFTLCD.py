@@ -127,6 +127,7 @@ def LCD_AddressSet(x1,y1,x2,y2):
     writeCammand(0x2B)
     writeData(y1)
     writeData(y2)
+
 while(1):
     LCD_init()
 
@@ -136,8 +137,7 @@ while(1):
     writeCammand(0x2C)
     for i in range(100):
         for j in range(100):
-            writeData(0x22)
-            writeData(0x12)
+            writeData(0x2A)
     for i in range(5):
         writeCammand(0x28)
         time.sleep(1)
