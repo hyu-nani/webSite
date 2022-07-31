@@ -14,7 +14,7 @@ WR = 26
 RES = 19
 BLK = 12
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 for i in range(8):
     GPIO.setup(dataPin[i], GPIO.OUT, initial=GPIO.LOW)
@@ -29,8 +29,12 @@ def LCDdata(bit):
     for i in range(8):
         if (bit & (1 << i)) == 1:
             GPIO.output(dataPin[i],GPIO.HIGH)
+            print("1")
         else:
             GPIO.output(dataPin[i],GPIO.LOW)
+            print("0")
+        print("\n")
+        time.sleep(0.5)
 
 def writeCammand(bit):
     GPIO.output(RS,GPIO.LOW)
