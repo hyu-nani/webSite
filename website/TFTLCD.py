@@ -137,7 +137,7 @@ writeCammand(0x2C)
 for i in range(100):
     for j in range(100):
         writeData(0x2A)
-for i in range(5):
+for i in range(100):
     writeCammand(0x28)
     time.sleep(1)
     writeCammand(0x29)
