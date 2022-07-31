@@ -147,7 +147,9 @@ GPIO.output(CS,GPIO.LOW)# active
 for i in range(255):
     writeCammand(0x28)
     time.sleep(1)
+    print("off")
     writeCammand(0x29)
     time.sleep(1)
+    print("on")
 
 GPIO.output(CS,GPIO.HIGH)# inactive
