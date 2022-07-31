@@ -20,35 +20,25 @@ for i in range(8):
     GPIO.setup(dataPin[i], GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(RS, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(CS, GPIO.OUT, initial=GPIO.HIGH)
-GPIO.setup(RD, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(RD, GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(WR, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(RES, GPIO.OUT, initial=GPIO.HIGH)
 GPIO.setup(BLK, GPIO.OUT, initial=GPIO.HIGH)
 
 def LCDdata(bit):
     for i in range(8):
-        if (bit >> i) & 0x01:
-            GPIO.output(dataPin[i],GPIO.HIGH)
-        else:
-            GPIO.output(dataPin[i],GPIO.LOW)
+        GPIO.output(dataPin[i],(bit >> i) & 0x01)
 
 def writeCammand(bit):
     GPIO.output(RS,GPIO.LOW)
-    GPIO.output(RD,GPIO.HIGH)
-    GPIO.output(WR,GPIO.LOW)
-    time.sleep(0.0001)
     LCDdata(bit)
-    time.sleep(0.0001)
+    GPIO.output(WR,GPIO.LOW)
     GPIO.output(WR,GPIO.HIGH)
-    GPIO.output(RS,GPIO.HIGH)
 
 def writeData(bit):
     GPIO.output(RS,GPIO.HIGH)
-    GPIO.output(RD,GPIO.HIGH)
-    GPIO.output(WR,GPIO.LOW)
-    time.sleep(0.0001)
     LCDdata(bit)
-    time.sleep(0.0001)
+    GPIO.output(WR,GPIO.LOW)
     GPIO.output(WR,GPIO.HIGH)
 
 def LCD_init():
