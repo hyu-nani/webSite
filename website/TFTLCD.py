@@ -51,70 +51,70 @@ def LCD_init():
     GPIO.output(RES,GPIO.HIGH)
     time.sleep(0.12)
     GPIO.output(CS,GPIO.LOW)# active
-    
+
     writeCammand(0x28) #display OFF
     writeCammand(0x11)#sleep out
     writeData(0x00)
     writeCammand(0xCB)#Power Control A
-	writeData(0x39)#always 0x39
-	writeData(0x2C) #always 0x2C
-	writeData(0x00) #always 0x
-	writeData(0x34) #Vcore = 1.6V
-	writeData(0x02) #DDVDH = 5.6V
-	writeCammand(0xCF) #Power Control B
-	writeData(0x00) #always 0x
-	writeData(0x81) #PCEQ off
-	writeData(0x30) #ESD protection
-	writeCammand(0xE8) #Driver timing control A
-	writeData(0x85) #non‐overlap
-	writeData(0x01) #EQ timing
-	writeData(0x79) #Pre‐charge timing
-	writeCammand(0xEA) #Driver timing control B
-	writeData(0x00) #Gate driver timing
-	writeData(0x00) #always 0x
-	writeCammand(0xED) #Power‐On sequence control
-	writeData(0x64) #soft start
-	writeData(0x03) #power on sequence
-	writeData(0x12) #power on sequence
-	writeData(0x81) #DDVDH enhance on
-	writeCammand(0xF7) #Pump ratio control
-	writeData(0x20) #DDVDH=2xVCI
-	writeCammand(0xC0) #power control 1
-	writeData(0x26)
-	writeData(0x04) #second parameter for ILI9340 (ignored by ILI9341)
-	writeCammand(0xC1) #power control 2
-	writeData(0x11)
-	writeCammand(0xC5) #VCOM control 1
-	writeData(0x35)
-	writeData(0x3E)
-	writeCammand(0xC7) #VCOM control 2
-	writeData(0xBE)
-	writeCammand(0x36) #memory access control = BGR
-	writeData(0x88)
-	writeCammand(0xB1) #frame rate control
-	writeData(0x00)
-	writeData(0x10)
-	writeCammand(0xB6) #display function control
-	writeData(0x0A)
-	writeData(0xA2)
-	writeCammand(0x3A) #pixel format = 16 bit per pixel
-	writeData(0x55)
-	writeCammand(0xF2) #3G Gamma control
-	writeData(0x02) #off
-	writeCammand(0x26) #Gamma curve 3
-	writeData(0x01)
-	writeCammand(0x2A) #column address set
-	writeData(0x00)
-	writeData(0x00) #start 0x00
-	writeData(0x00)
-	writeData(0xEF) #end 0xEF
-	writeCammand(0x2B) #page address set
-	writeData(0x00)
-	writeData(0x00) #start 0x00
-	writeData(0x01)
-	writeData(0x3F) #end 0x013F
-	
-	writeCammand(0x29) #display ON
+    writeData(0x39)#always 0x39     
+    writeData(0x2C) #always 0x2C    
+    writeData(0x00) #always 0x  
+    writeData(0x34) #Vcore = 1.6V
+    writeData(0x02) #DDVDH = 5.6V
+    writeCammand(0xCF) #Power Control B
+    writeData(0x00) #always 0x
+    writeData(0x81) #PCEQ off
+    writeData(0x30) #ESD protection
+    writeCammand(0xE8) #Driver timing control A
+    writeData(0x85) #non‐overlap
+    writeData(0x01) #EQ timing
+    writeData(0x79) #Pre‐charge timing
+    writeCammand(0xEA) #Driver timing control B
+    writeData(0x00) #Gate driver timing
+    writeData(0x00) #always 0x
+    writeCammand(0xED) #Power‐On sequence control
+    writeData(0x64) #soft start
+    writeData(0x03) #power on sequence
+    writeData(0x12) #power on sequence
+    writeData(0x81) #DDVDH enhance on
+    writeCammand(0xF7) #Pump ratio control
+    writeData(0x20) #DDVDH=2xVCI
+    writeCammand(0xC0) #power control 1
+    writeData(0x26)
+    writeData(0x04) #second parameter for ILI9340 (ignored by ILI9341)
+    writeCammand(0xC1) #power control 2
+    writeData(0x11)
+    writeCammand(0xC5) #VCOM control 1
+    writeData(0x35)
+    writeData(0x3E)
+    writeCammand(0xC7) #VCOM control 2
+    writeData(0xBE)
+    writeCammand(0x36) #memory access control = BGR
+    writeData(0x88)
+    writeCammand(0xB1) #frame rate control
+    writeData(0x00)
+    writeData(0x10)
+    writeCammand(0xB6) #display function control
+    writeData(0x0A)
+    writeData(0xA2)
+    writeCammand(0x3A) #pixel format = 16 bit per pixel
+    writeData(0x55)
+    writeCammand(0xF2) #3G Gamma control
+    writeData(0x02) #off
+    writeCammand(0x26) #Gamma curve 3
+    writeData(0x01)
+    writeCammand(0x2A) #column address set
+    writeData(0x00)
+    writeData(0x00) #start 0x00
+    writeData(0x00)
+    writeData(0xEF) #end 0xEF
+    writeCammand(0x2B) #page address set
+    writeData(0x00)
+    writeData(0x00) #start 0x00
+    writeData(0x01)
+    writeData(0x3F) #end 0x013F
+    
+    writeCammand(0x29) #display ON
 
     GPIO.output(CS,GPIO.HIGH)# inactive
     GPIO.output(BLK,1)
