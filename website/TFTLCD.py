@@ -157,5 +157,10 @@ writeCammand(0x2C)
 for i in range(100):
     for j in range(100):
         writeData(0x22)
+for i in range(10):
+    writeCammand(0x28)
+    time.sleep(1)
+    writeCammand(0x29)
+    time.sleep(1)
 
 GPIO.output(CS,GPIO.HIGH)# inactive
