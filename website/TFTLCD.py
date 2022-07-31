@@ -27,7 +27,7 @@ GPIO.setup(BLK, GPIO.OUT, initial=GPIO.HIGH)
 
 def LCDdata(bit):
     for i in range(8):
-        if ((bit >> i) & 0x01) == 1:
+        if (bit >> i) & 0x01:
             GPIO.output(dataPin[i],GPIO.HIGH)
         else:
             GPIO.output(dataPin[i],GPIO.LOW)
