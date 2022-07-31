@@ -89,7 +89,7 @@ def LCD_init():
         GPIO.output(WR,GPIO.LOW)
         LCDdata(i)
         GPIO.output(WR,GPIO.HIGH)
-        time.sleep(0.5)
+        time.sleep(0.1)
 
 
 
