@@ -143,7 +143,7 @@ def LCD_AddressSet(x1,y1,x2,y2):
     writeCammand(0x2A)
     writeData(x1)
     writeData(x2)
-    writeCommand(0x2B)
+    writeCammand(0x2B)
     writeData(y1)
     writeData(y2)
 
